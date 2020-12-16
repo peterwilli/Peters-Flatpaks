@@ -1,0 +1,28 @@
+app-id: org.languagetool.EmbeddedHTTPServer
+command: embedded_http_server
+runtime: org.freedesktop.Platform
+runtime-version: '19.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.openjdk11
+finish-args : 
+  - "--env=PATH=/app/jre/bin:/usr/bin:/app/bin"
+  - --share=network
+modules:
+  - name: embedded_http_server
+    buildsystem: simple
+    build-commands:
+      - unzip LanguageTool-stable.zip -d /app
+      - install -D embedded_http_server /app/bin/embedded_http_server
+      - install -D org.languagetool.EmbeddedHTTPServer.desktop /app/share/applications/org.languagetool.EmbeddedHTTPServer.desktop      
+    sources:
+      - type: file
+        path: embedded_http_server
+      - type: file
+        path: LanguageTool-stable.zip
+      - type: file
+        path: org.languagetool.EmbeddedHTTPServer.desktop
+  - name: openjdk
+    buildsystem: simple
+    build-commands:
+      - /usr/lib/sdk/openjdk11/install.sh

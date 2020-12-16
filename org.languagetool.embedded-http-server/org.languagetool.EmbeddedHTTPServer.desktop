@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=LanguageToolServer
+Exec=embedded_http_server
+Type=Application
+Icon=org.gnome.Dictionary
